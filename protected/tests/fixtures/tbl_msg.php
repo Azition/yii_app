@@ -7,12 +7,14 @@ return array(
 		'description' => '',
 		'status' => '',
 		'id_user' => '',
+		'answer' => '',
 	),
 	'sample2'=>array(
 		'title' => '',
 		'description' => '',
 		'status' => '',
 		'id_user' => '',
+		'answer' => '',
 	),
 	*/
 );

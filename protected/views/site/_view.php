@@ -14,4 +14,10 @@
 	<? else:?>
 		<span style="color: green">Сообщение обработано</span>
 	<? endif;?>
+	<br />
+	<? if ($data->answer):?>
+		<b>Ответ:</b>
+		<?php echo CHtml::encode($data->answer); ?>
+		<br />
+	<? endif;?>
 </div>

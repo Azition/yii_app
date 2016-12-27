@@ -9,6 +9,7 @@
  * @property string $description
  * @property string $status
  * @property integer $id_user
+ * @property string $answer
  */
 class Messages extends CActiveRecord
 {
@@ -31,11 +32,11 @@ class Messages extends CActiveRecord
 			array('title, description, status, id_user', 'required'),
 			array('id_user', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>100),
-			array('description', 'length', 'max'=>254),
+			array('description, answer', 'length', 'max'=>254),
 			array('status', 'length', 'max'=>7),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, description, status, id_user', 'safe', 'on'=>'search'),
+			array('id, title, description, status, id_user, answer', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,6 +62,7 @@ class Messages extends CActiveRecord
 			'description' => 'Description',
 			'status' => 'Status',
 			'id_user' => 'Id User',
+			'answer' => 'Answer',
 		);
 	}
 
@@ -91,6 +93,8 @@ class Messages extends CActiveRecord
 		$criteria->compare('status',$this->status,true);
 
 		$criteria->compare('id_user',$this->id_user);
+
+		$criteria->compare('answer',$this->answer,true);
 
 		return new CActiveDataProvider('Messages', array(
 			'criteria'=>$criteria,
