@@ -29,7 +29,10 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		if (Yii::app()->user->isGuest)
+			$this->actionLogin();
+		else
+			$this->render('index');
 	}
 
 	/**
@@ -96,6 +99,23 @@ class SiteController extends Controller
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));
+	}
+
+	public function actionRegist(){
+		$model = new User;
+
+		if(isset($_POST['User']))
+		{
+			$_POST['User']['password'] = CPasswordHelper::hashPassword($_POST['User']['password']);
+			$_POST['User']['role'] = 'user';
+			$model->attributes=$_POST['User'];
+			if($model->save())
+				$this->redirect(array('login'));
+		}
+
+		$this->render('regist',array(
+			'model'=>$model,
+		));
 	}
 
 	/**
