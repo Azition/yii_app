@@ -144,6 +144,19 @@ class SiteController extends Controller
 		]);
 	}
 
+	public function actionDetailmsg(){
+
+		$model = new Messages;
+		if (isset($_GET['id'])) {
+			$msg_id = $_GET['id'];
+		}
+		$model = $model->find('id = :id', [':id' => $msg_id]);
+
+		$this->render('detailmsg', [
+			'model' => $model,
+		]);
+	} 
+
 	/**
 	 * Logs out the current user and redirect to homepage.
 	 */

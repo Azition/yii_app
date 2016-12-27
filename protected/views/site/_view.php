@@ -28,4 +28,5 @@
 	<? if (isset(Yii::app()->user->role) && Yii::app()->user->role === 'admin' && !$data->answer): ?>
 		<?= CHTML::link('Ответить',['site/setanswer','id' => $data->id])?>
 	<? endif;?>
+		<?= CHTML::link('Подробнее',['site/detailmsg','id' => $data->id])?>
 </div>

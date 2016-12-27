@@ -109,4 +109,16 @@ class Messages extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function statusMessage($status){
+		$labels = [
+			'wait' => 'В ожидании',
+			'success' => 'Сообщение обработано' 
+		];
+
+		if (isset($labels[$status]))
+			return $labels[$status];
+
+		return $status;
+	}
 }
