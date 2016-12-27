@@ -1,5 +1,10 @@
 <div class="view">
 
+	<? if (isset(Yii::app()->user->role) && Yii::app()->user->role === 'admin'): ?>
+		<b>Пользователь</b>
+		<?= User::model()->find('id = :id',[':id' => $data->id_user])->username?>
+		<br />
+	<? endif;?>
 	<b>Заголовок:</b>
 	<?php echo CHtml::encode($data->title); ?>
 	<br />
@@ -19,5 +24,8 @@
 		<b>Ответ:</b>
 		<?php echo CHtml::encode($data->answer); ?>
 		<br />
+	<? endif;?>
+	<? if (isset(Yii::app()->user->role) && Yii::app()->user->role === 'admin' && !$data->answer): ?>
+		<?= CHTML::link('Ответить',['site/setanswer','id' => $data->id])?>
 	<? endif;?>
 </div>

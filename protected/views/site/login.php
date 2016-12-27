@@ -22,13 +22,13 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 	<p class="note">Поля со знаком <span class="required">*</span> обязательны.</p>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'username'); ?>
+		<?php echo $form->labelEx($model,'username',['label' => 'Имя пользователя']); ?>
 		<?php echo $form->textField($model,'username'); ?>
 		<?php echo $form->error($model,'username'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'password'); ?>
+		<?php echo $form->labelEx($model,'password',['label' => 'Пароль']); ?>
 		<?php echo $form->passwordField($model,'password'); ?>
 		<?php echo $form->error($model,'password'); ?>
 	</div>

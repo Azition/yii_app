@@ -32,12 +32,14 @@ class SiteController extends Controller
 		if (Yii::app()->user->isGuest)
 			$this->actionLogin();
 		else{
-			$dataProvider=new CActiveDataProvider('Messages',[
-				'criteria' => [
-					'condition' => 'id_user = :id',
-					'params' => [':id' => Yii::app()->user->uid]
-				]
-			]);
+			$dataProvider=new CActiveDataProvider('Messages');
+			if (isset(Yii::app()->user->role) 
+				&& Yii::app()->user->role === 'user'){
+				$criteria = new CDbCriteria();
+				$criteria->condition = 'id_user = :id';
+				$criteria->params = [':id' => Yii::app()->user->uid];
+				$dataProvider->criteria = $criteria;
+			}
 			$this->render('msglist',[
 				'dataProvider'=>$dataProvider,
 			]);
@@ -117,6 +119,28 @@ class SiteController extends Controller
 
 		$this->render('createmsg', [
 			'model' => $model
+		]);
+	}
+
+	public function actionSetanswer(){
+
+		$model = new Messages;
+		if (isset($_GET['id'])) {
+			$msg_id = $_GET['id'];
+		}
+		$model = $model->find('id = :id', [':id' => $msg_id]);
+
+		if(isset($_POST['Messages']))
+		{
+
+			$_POST['Messages']['status'] = 'success';
+			$model->attributes=$_POST['Messages'];
+			if($model->save())
+				$this->redirect(array('index'));
+		}
+
+		$this->render('setanswer', [
+			'model' => $model,
 		]);
 	}
 

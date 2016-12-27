@@ -10,13 +10,13 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'title'); ?>
+		<?php echo $form->labelEx($model,'title',['label' => 'Тема']); ?>
 		<?php echo $form->textField($model,'title',array('size'=>40,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'title'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'description'); ?>
+		<?php echo $form->labelEx($model,'description',['label' => 'Вопрос']); ?>
 		<?php echo $form->textArea($model,'description',array(
 				'cols' => 60,
 				'maxlength' => 254,
