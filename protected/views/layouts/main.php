@@ -30,7 +30,8 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Обращения', 'url'=>array('/site/index'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'Обратиться', 'url'=>array('/site/contact'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Обратиться', 'url'=>array('/site/createmsg'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Авторизация', 'url'=>array('/site/index'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Регистрация', 'url'=>array('/site/regist'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Выйти ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
